@@ -641,7 +641,7 @@ namespace Bloom.Book
 			SafelyAddToIdSet(id, metaFileLastWriteTime, currentFolder, idToSortedFilepathsMap);
 		}
 
-		internal string GetBestTitleForUserDisplay(CollectionSettings settings)
+		internal string GetBestTitleForUserDisplay(List<string> langCodes)
 		{
 			try
 			{
@@ -652,7 +652,7 @@ namespace Bloom.Book
 				var multiText = new MultiTextBase();
 				foreach (var lang in langs)
 					multiText[lang] = titles[lang].Trim();
-				return Book.GetBestTitleForDisplay(multiText, settings, IsEditable);
+				return Book.GetBestTitleForDisplay(multiText, langCodes, IsEditable);
 			}
 			catch (Exception e)
 			{
@@ -1369,4 +1369,9 @@ namespace Bloom.Book
 		[JsonProperty("iso")]
 		public string Iso { get; set; }
 	}
+
+	// In the future, we may add other slots including {TitleLanguage1, TitleLanguage2, CreditsLanguage}
+	// We would then rename these to be more specific, e.g. Language1-->InteriorLanguage1
+	// See https://docs.google.com/document/d/1uIiog56oYMAa4tTyNag1SgyXPEKgk0EKMxMP1LzPeCc
+	public enum LanguageSlot { Language1, Language2, Language3 }
 }

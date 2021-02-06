@@ -90,7 +90,8 @@ namespace BloomTests.Book
 		[Test]
 		public void MakeLanguageUploadData_FindsDefaultInfo()
 		{
-			var results = _collectionSettings.MakeLanguageUploadData(new[] {"en", "tpi", "xy3"});
+			var bookData = new BookData(new HtmlDom("<html><body></body></html>"), _collectionSettings, null);
+			var results = bookData.MakeLanguageUploadData(new[] {"en", "tpi", "xy3"});
 			Assert.That(results.Length, Is.EqualTo(3), "should get one result per input");
 			VerifyLangData(results[0], "en", "English", "eng");
 			VerifyLangData(results[1], "tpi", "Tok Pisin", "tpi");
@@ -100,9 +101,10 @@ namespace BloomTests.Book
 		[Test]
 		public void MakeLanguageUploadData_FindsOverriddenNames()
 		{
+			var bookData = new BookData(new HtmlDom("<html><body></body></html>"), _collectionSettings, null);
 			_collectionSettings.Language1.SetName("Cockney", true);
 			// Note: no current way of overriding others; verify they aren't changed.
-			var results = _collectionSettings.MakeLanguageUploadData(new[] {"en", "tpi", "xyz"});
+			var results = bookData.MakeLanguageUploadData(new[] {"en", "tpi", "xyz"});
 			Assert.That(results.Length, Is.EqualTo(3), "should get one result per input");
 			VerifyLangData(results[0], "en", "English", "eng");
 			VerifyLangData(results[1], "tpi", "Tok Pisin", "tpi");
@@ -482,7 +484,7 @@ namespace BloomTests.Book
 }");
 				var data = new BookData(bookDom, _collectionSettings, null);
 				data.MergeBrandingSettings(tempFolder.Path);
-				var metadata = BookCopyrightAndLicense.GetMetadata(bookDom, _collectionSettings);
+				var metadata = BookCopyrightAndLicense.GetMetadata(bookDom, data);
 				Assert.AreEqual("http://creativecommons.org/licenses/by/3.0/igo/", metadata.License.Url);
 				Assert.AreEqual("These are custom notes.", metadata.License.RightsStatement);
 				Assert.That(metadata.CopyrightNotice, Is.Null.Or.Empty);
@@ -523,7 +525,7 @@ namespace BloomTests.Book
 }");
 				var data = new BookData(bookDom, _collectionSettings, null);
 				data.MergeBrandingSettings(tempFolder.Path);
-				var metadata = BookCopyrightAndLicense.GetMetadata(bookDom, _collectionSettings);
+				var metadata = BookCopyrightAndLicense.GetMetadata(bookDom, data);
 
 				Assert.AreEqual("http://creativecommons.org/licenses/by/3.0/igo/", metadata.License.Url);
 				Assert.AreEqual("These are custom notes.", metadata.License.RightsStatement);
@@ -559,7 +561,7 @@ namespace BloomTests.Book
 					}");
 				var data = new BookData(bookDom, _collectionSettings, null);
 				data.MergeBrandingSettings(tempFolder.Path);
-				var metadata = BookCopyrightAndLicense.GetMetadata(bookDom, _collectionSettings);
+				var metadata = BookCopyrightAndLicense.GetMetadata(bookDom, data);
 
 				Assert.AreEqual($"Copyright © {DateTime.Now.Year.ToString()} Chewtoys International",
 					metadata.CopyrightNotice);
@@ -601,7 +603,7 @@ namespace BloomTests.Book
 }");
 				var data = new BookData(bookDom, _collectionSettings, null);
 				data.MergeBrandingSettings(tempFolder.Path);
-				var metadata = BookCopyrightAndLicense.GetMetadata(bookDom, _collectionSettings);
+				var metadata = BookCopyrightAndLicense.GetMetadata(bookDom, data);
 				if (dataDivName == "copyright")
 					Assert.IsTrue(metadata.CopyrightNotice.Contains("2012")); // unchanged from testcase
 				else
@@ -654,7 +656,7 @@ namespace BloomTests.Book
 }");
 				var data = new BookData(bookDom, _collectionSettings, null);
 				data.MergeBrandingSettings(tempFolder.Path);
-				var metadata = BookCopyrightAndLicense.GetMetadata(bookDom, _collectionSettings);
+				var metadata = BookCopyrightAndLicense.GetMetadata(bookDom, data);
 
 				Assert.That(metadata.License, Is.InstanceOf<CustomLicense>());
 				Assert.That(metadata.License.Url, Is.Null.Or.Empty);
@@ -876,7 +878,7 @@ namespace BloomTests.Book
 				data.UpdateVariablesAndDataDivThroughDOM(info);
 
 				AssertThatXmlIn.Dom(dom.RawDom).HasSpecifiedNumberOfMatchesForXpath(
-				"//div[@id='bloomDataDiv']/div[@data-book='decodableStageLetters' and @lang='" +_collectionSettings.Language1Iso639Code +  "' and text()='a, e, r, i, o, n, t, l, s']",
+				"//div[@id='bloomDataDiv']/div[@data-book='decodableStageLetters' and @lang='" +data.Language1.Iso639Code +  "' and text()='a, e, r, i, o, n, t, l, s']",
 				1);
 		}
 
@@ -904,7 +906,7 @@ namespace BloomTests.Book
 			var data = new BookData(dom, _collectionSettings, null);
 			data.UpdateVariablesAndDataDivThroughDOM();
 			AssertThatXmlIn.Dom(dom.RawDom).HasSpecifiedNumberOfMatchesForXpath(
-				"//div[@data-book='bookTitle' and @lang='" + _collectionSettings.Language1Iso639Code +
+				"//div[@data-book='bookTitle' and @lang='" + data.Language1.Iso639Code +
 				"' and text()='the title']", 1);
 		}
 
@@ -1967,6 +1969,78 @@ namespace BloomTests.Book
 			var foo = (XmlElement) dom.SelectSingleNodeHonoringDefaultNS("//*[@id='foo']");
 			Assert.That(foo.InnerXml, Contains.Substring("<label>some label</label>"));
 		}
+
+		/// <summary>
+		/// BL-9460 we had to reintroduce the ability to set the width & height of the cover image, instead of relying on object-fit:cover
+		/// </summary>
+		[TestCase("bloom-scale-with-code",true)]
+		[TestCase("", false)]
+		public void SynchronizeDataItemsThroughoutDOM_ParentHasSpecialClassAndImageHasStyle_StyleCopiedToImg(string containerClass, bool expectStyle)
+		{
+			var dom = new HtmlDom($@"<html ><head></head><body>
+				<div id='bloomDataDiv'>
+					<div  data-book='coverImage' src='new.png' style='width: 233.719px; height:100%;'>new.png</div>
+				</div>
+				<div class='bloom-page'>
+					 <div class='bloom-imageContainer {containerClass}'>
+						<img data-book='coverImage' src='placeholder.png' ></img>
+					</div>
+				</div>
+				</body></html>");
+			var data = new BookData(dom, _collectionSettings, null);
+			data.SynchronizeDataItemsThroughoutDOM();
+			var dataDivImage = (XmlElement)dom.SelectSingleNodeHonoringDefaultNS("//img[@data-book='coverImage']");
+			Assert.That(dataDivImage.GetAttribute("src"), Contains.Substring("new.png"));
+			if(expectStyle)
+				Assert.That(dataDivImage.GetAttribute("style"), Contains.Substring("height:100%"));
+			else
+			{
+				Assert.That(dataDivImage.GetAttribute("style"), Is.Empty);
+			}
+		}
+
+		//  BL-9460 Same as the above ( SynchronizeDataItemsThroughoutDOM_ParentHasSpecialClassAndImageHasStyle_StyleCopiedToImg() ), but in the other direction
+		[TestCase("bloom-scale-with-code", true)]
+		/* Review: we don't actually have code to prevent copying up to dataDiv [TestCase("", false)]*/
+		public void SuckInDataFromEditedDom_ParentHasSpecialClassAndImageHasStyle_StyleCopiedToDataDiv(
+			string containerClass, bool expectStyle)
+		{
+			var bookDom = new HtmlDom($@"<html ><head></head><body>
+				<div id='bloomDataDiv'>
+					<div  data-book='coverImage' src='old.png'>old.png</div>
+				</div>
+				<div class='bloom-page'>
+					 <div class='bloom-imageContainer {containerClass}'>
+						<img data-book='coverImage' src='old.png'></img>
+					</div>
+				</div>
+				</body></html>");
+			var data = new BookData(bookDom, _collectionSettings, null);
+
+			var editedPageDom = new HtmlDom($@"<html ><head></head><body>
+				<div class='bloom-page'>
+					 <div class='bloom-imageContainer {containerClass}'>
+						<img data-book='coverImage' src='new.png' style='width: 233.719px; height:100%;'></img>
+					</div>
+				</div>
+			 </body></html>");
+			
+			data.SuckInDataFromEditedDom(editedPageDom);
+			var dataDivImage =
+				bookDom.SelectSingleNodeHonoringDefaultNS(
+					"//div[@id='bloomDataDiv']/div[@data-book='coverImage']");
+			Assert.That(dataDivImage.GetAttribute("src"), Is.EqualTo("new.png"));
+
+			if (expectStyle)
+			{ 
+				Assert.That(dataDivImage.GetAttribute("style"), Contains.Substring("height:100%"));
+			}
+			else
+			{
+				Assert.That(dataDivImage.GetAttribute("style"), Is.Empty);
+			}
+		}
+
 
 		[Test]
 		public void SynchronizeDataItemsThroughoutDOM_CopiesTextBoxAudioData_ButNotJunkData_RemovesUnwantedItems()

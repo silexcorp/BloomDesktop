@@ -15,6 +15,7 @@ using Bloom.ImageProcessing;
 using Bloom.WebLibraryIntegration;
 using Bloom.Workspace;
 using Bloom.Api;
+using Bloom.TeamCollection;
 using Bloom.Publish.AccessibilityChecker;
 using Bloom.Publish.Android;
 using Bloom.Publish.Epub;
@@ -138,6 +139,7 @@ namespace Bloom
 							typeof(TalkingBookApi),
 							typeof(ToolboxApi),
 							typeof(CommonApi),
+							typeof(TeamCollectionApi),
 							typeof(BrandingSettings),
 							typeof(FeatureControlApi),
 							typeof(I18NApi),
@@ -215,12 +217,12 @@ namespace Bloom
 					{
 						var librarySettings = c.Resolve<CollectionSettings>();
 						var preferredSourceLanguagesInOrder = new List<string>();
-						preferredSourceLanguagesInOrder.Add(librarySettings.Language2Iso639Code);
-						if (!String.IsNullOrEmpty(librarySettings.Language3Iso639Code)
-						    && librarySettings.Language3Iso639Code != librarySettings.Language2Iso639Code)
-							preferredSourceLanguagesInOrder.Add(librarySettings.Language3Iso639Code);
+						preferredSourceLanguagesInOrder.Add(librarySettings.Language2.Iso639Code);
+						if (!String.IsNullOrEmpty(librarySettings.Language3.Iso639Code)
+							&& librarySettings.Language3.Iso639Code != librarySettings.Language2.Iso639Code)
+							preferredSourceLanguagesInOrder.Add(librarySettings.Language3.Iso639Code);
 
-						return new LanguageSettings(librarySettings.Language1Iso639Code, preferredSourceLanguagesInOrder);
+						return new LanguageSettings(librarySettings.Language1.Iso639Code, preferredSourceLanguagesInOrder);
 					});
 					builder.Register<XMatterPackFinder>(c =>
 					{
@@ -329,6 +331,7 @@ namespace Bloom
 			_scope.Resolve<TalkingBookApi>().RegisterWithApiHandler(server.ApiHandler);
 			_scope.Resolve<ToolboxApi>().RegisterWithApiHandler(server.ApiHandler);
 			_scope.Resolve<CommonApi>().RegisterWithApiHandler(server.ApiHandler);
+			_scope.Resolve<TeamCollectionApi>().RegisterWithApiHandler(server.ApiHandler);
 			_scope.Resolve<FeatureControlApi>().RegisterWithApiHandler(server.ApiHandler);
 			_scope.Resolve<SignLanguageApi>().RegisterWithApiHandler(server.ApiHandler);
 			_scope.Resolve<AudioSegmentationApi>().RegisterWithApiHandler(server.ApiHandler);

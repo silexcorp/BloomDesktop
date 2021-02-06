@@ -80,12 +80,6 @@ namespace Bloom.Publish
 			Debug.Assert(ControlForInvoke==null || !ControlForInvoke.InvokeRequired); // should be called on UI thread.
 			Debug.Assert(dom != null && dom.Body != null);
 
-			// For some unknown reason, if the accessibility window is showing, some of the browser navigation
-			// that is needed to accurately determine which content is visible simply doesn't happen.
-			// It would be disconcerting if it popped to the top after we hid it and re-showed it.
-			// So, we just hide the window if it is showing when we do this. See BL-7807.
-			AccessibilityCheckWindow.StaticHide();
-
 			// Collect all the page divs.
 			var pageElts = new List<XmlElement>();
 			if (epubMaker != null)
@@ -269,7 +263,7 @@ namespace Bloom.Publish
 
 		public static void RemoveEnterpriseFeaturesIfNeeded(Book.Book book, List<XmlElement> pageElts, ISet<string> warningMessages)
 		{
-			if (RemoveEnterprisePagesIfNeeded(book.CollectionSettings, book.Storage.Dom, pageElts))
+			if (RemoveEnterprisePagesIfNeeded(book.BookData, book.Storage.Dom, pageElts))
 				warningMessages.Add(LocalizationManager.GetString("Publish.RemovingEnterprisePages", "Removing one or more pages which require Bloom Enterprise to be enabled"));
 			if (!book.CollectionSettings.HaveEnterpriseFeatures)
 				RemoveEnterpriseOnlyAssets(book);
@@ -280,9 +274,9 @@ namespace Bloom.Publish
 		/// Also renumber the pages if any are removed.
 		/// </summary>
 		/// <returns><c>true</c>, if any pages were removed, <c>false</c> otherwise.</returns>
-		public static bool RemoveEnterprisePagesIfNeeded(Bloom.Collection.CollectionSettings settings, HtmlDom dom, List<XmlElement> pageElts)
+		public static bool RemoveEnterprisePagesIfNeeded(BookData bookData, HtmlDom dom, List<XmlElement> pageElts)
 		{
-			if (!settings.HaveEnterpriseFeatures)
+			if (!bookData.CollectionSettings.HaveEnterpriseFeatures)
 			{
 				var pageRemoved = false;
 				foreach (var page in pageElts.ToList())
@@ -296,7 +290,8 @@ namespace Bloom.Publish
 				}
 				if (pageRemoved)
 				{
-					dom.UpdatePageNumberAndSideClassOfPages(settings.CharactersForDigitsForPageNumbers, settings.Language1.IsRightToLeft);
+					dom.UpdatePageNumberAndSideClassOfPages(bookData.CollectionSettings.CharactersForDigitsForPageNumbers,
+						bookData.Language1.IsRightToLeft);
 					return true;
 				}
 			}

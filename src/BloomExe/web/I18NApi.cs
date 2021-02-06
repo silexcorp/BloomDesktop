@@ -55,9 +55,24 @@ namespace Bloom.Api
 					string id = parameters["key"];
 					string englishText = parameters["englishText"];
 					string langId = parameters["langId"];
-					langId = langId.Replace("V", request.CurrentCollectionSettings.Language1Iso639Code);
-					langId = langId.Replace("N1", request.CurrentCollectionSettings.Language2Iso639Code);
-					langId = langId.Replace("N2", request.CurrentCollectionSettings.Language3Iso639Code);
+					string isoCode1 = null;
+					string isoCode2 = null;
+					string isoCode3 = null;
+					if (request.CurrentBook != null)
+					{
+						isoCode1 = request.CurrentBook.BookData.Language1.Iso639Code;
+						isoCode2 = request.CurrentBook.BookData.Language2.Iso639Code;
+						isoCode3 = request.CurrentBook.BookData.Language3.Iso639Code;
+					}
+					else
+					{
+						isoCode1 = request.CurrentCollectionSettings.Language1.Iso639Code;
+						isoCode2 = request.CurrentCollectionSettings.Language2.Iso639Code;
+						isoCode3 = request.CurrentCollectionSettings.Language3.Iso639Code;
+					}
+					langId = langId.Replace("V", isoCode1);
+					langId = langId.Replace("N1", isoCode2);
+					langId = langId.Replace("N2", isoCode3);
 					langId = langId.Replace("UI", LocalizationManager.UILanguageId);
 					string localizedString;
 					if (GetSomeTranslation(id, langId, out localizedString))
@@ -256,7 +271,7 @@ namespace Bloom.Api
 						"when the user has not encountered this part of the interface yet.",
 						id,
 						englishText);
-				NonFatalProblem.Report(ModalIf.None, PassiveIf.Alpha, "Missing l10n: " + englishText, longMsg);
+				NonFatalProblem.Report(ModalIf.None, PassiveIf.Alpha, "Missing l10n: " + englishText, longMsg, skipSentryReport: true);
 			}
 			else
 			{
@@ -264,7 +279,7 @@ namespace Bloom.Api
 					"Ignore this if you are looking at a 3rd-party book that does not ship with Bloom directly. " +
 					"Otherwise, please report that " + id + " needs to be " +
 					"added to the en.xlf, so that it can show up in the list of things to be localized even " +
-					"when the user has not encountered this part of the interface yet.");
+					"when the user has not encountered this part of the interface yet.", skipSentryReport: true);
 			}
 		}
 	}
