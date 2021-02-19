@@ -711,11 +711,6 @@ K'ate k'u ri' chatzoqopij ri cholnak'tz'ib' ri xapitz'o rech kuk'ut ri cholb'i'a
         <note>ID: CollectionSettingsDialog.RestartMessage</note>
         <target xml:lang="quc" state="final">Bloom kutz’apij na xuquje’ kutor na jun mul chik we wokcholom chak ruk’ k’ak’ taq suk'manem.</target>
       </trans-unit>
-      <trans-unit id="CollectionSettingsDialog.TeamCollectionTab.TabLabel">
-        <source xml:lang="en">Team Collection</source>
-        <note>ID: CollectionSettingsDialog.TeamCollectionTab.TabLabel</note>
-        <target xml:lang="quc" state="needs-translation">Team Collection</target>
-      </trans-unit>
       <trans-unit id="CollectionTab.AddMakeReaderTemplateBloomPackToolStripMenuItem" approved="yes">
         <source xml:lang="en">Make Reader Template Bloom Pack...</source>
         <note>ID: CollectionTab.AddMakeReaderTemplateBloomPackToolStripMenuItem</note>
@@ -5827,6 +5822,11 @@ Do you want to go ahead?</note>
         <source xml:lang="en">Subscription Code:</source>
         <note>ID: Settings.Enterprise.SubscriptionCode</note>
         <target xml:lang="quc" state="final">Retal utz'ib'axik ib':</target>
+      </trans-unit>
+      <trans-unit id="TeamCollection.TeamCollection">
+        <source xml:lang="en">Team Collection</source>
+        <note>ID: TeamCollection.TeamCollection</note>
+        <target xml:lang="quc" state="needs-translation">Team Collection</target>
       </trans-unit>
       <trans-unit id="TeamCollection.Available" sil:dynamic="true">
         <source xml:lang="en">This book is available for editing</source>
