@@ -708,11 +708,6 @@
         <note>ID: CollectionSettingsDialog.RestartMessage</note>
         <target xml:lang="tl" state="needs-translation">Bloom will close and re-open this project with the new settings.</target>
       </trans-unit>
-      <trans-unit id="CollectionSettingsDialog.TeamCollectionTab.TabLabel">
-        <source xml:lang="en">Team Collection</source>
-        <note>ID: CollectionSettingsDialog.TeamCollectionTab.TabLabel</note>
-        <target xml:lang="tl" state="needs-translation">Team Collection</target>
-      </trans-unit>
       <trans-unit id="CollectionTab.AddMakeReaderTemplateBloomPackToolStripMenuItem">
         <source xml:lang="en">Make Reader Template Bloom Pack...</source>
         <note>ID: CollectionTab.AddMakeReaderTemplateBloomPackToolStripMenuItem</note>
@@ -5823,6 +5818,11 @@ Do you want to go ahead?</note>
         <source xml:lang="en">Subscription Code:</source>
         <note>ID: Settings.Enterprise.SubscriptionCode</note>
         <target xml:lang="tl" state="needs-translation">Subscription Code:</target>
+      </trans-unit>
+      <trans-unit id="TeamCollection.TeamCollection">
+        <source xml:lang="en">Team Collection</source>
+        <note>ID: TeamCollection.TeamCollection</note>
+        <target xml:lang="tl" state="needs-translation">Team Collection</target>
       </trans-unit>
       <trans-unit id="TeamCollection.Available" sil:dynamic="true">
         <source xml:lang="en">This book is available for editing</source>
