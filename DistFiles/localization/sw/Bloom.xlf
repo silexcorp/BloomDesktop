@@ -708,11 +708,6 @@
         <note>ID: CollectionSettingsDialog.RestartMessage</note>
         <target xml:lang="sw" state="final">Bloom itafunga na kufungua tena mradi huu kwa mpangilio mpya.</target>
       </trans-unit>
-      <trans-unit id="CollectionSettingsDialog.TeamCollectionTab.TabLabel">
-        <source xml:lang="en">Team Collection</source>
-        <note>ID: CollectionSettingsDialog.TeamCollectionTab.TabLabel</note>
-        <target xml:lang="sw" state="translated">Mkusanyiko wa timu</target>
-      </trans-unit>
       <trans-unit id="CollectionTab.AddMakeReaderTemplateBloomPackToolStripMenuItem" approved="yes">
         <source xml:lang="en">Make Reader Template Bloom Pack...</source>
         <note>ID: CollectionTab.AddMakeReaderTemplateBloomPackToolStripMenuItem</note>
@@ -5827,6 +5822,11 @@ Kwa<g id="mspp-1" ctype="x-html-strong">ukurasa</g>
         <source xml:lang="en">Subscription Code:</source>
         <note>ID: Settings.Enterprise.SubscriptionCode</note>
         <target xml:lang="sw" state="translated">Nambari ya usajili:</target>
+      </trans-unit>
+      <trans-unit id="TeamCollection.TeamCollection">
+        <source xml:lang="en">Team Collection</source>
+        <note>ID: TeamCollection.TeamCollection</note>
+        <target xml:lang="sw" state="needs-translation">Team Collection</target>
       </trans-unit>
       <trans-unit id="TeamCollection.Available" sil:dynamic="true">
         <source xml:lang="en">This book is available for editing</source>
