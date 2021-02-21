@@ -6,6 +6,7 @@ using Bloom.Workspace;
 using L10NSharp;
 using SIL.Reporting;
 using System.Drawing;
+using Bloom.web;
 using SIL.Windows.Forms.SettingProtection;
 
 namespace Bloom.CollectionTab
@@ -15,7 +16,7 @@ namespace Bloom.CollectionTab
 		private readonly LibraryModel _model;
 
 
-		private LibraryListView _collectionListView;
+		private Control _collectionListView;
 		private LibraryBookView _bookView;
 
 		public LibraryView(LibraryModel model, LibraryListView.Factory libraryListViewFactory,
@@ -28,15 +29,20 @@ namespace Bloom.CollectionTab
 			splitContainer1.BackColor = Palette.BookListSplitterColor; // controls the left vs. right splitter
 			_toolStrip.Renderer = new NoBorderToolStripRenderer();
 
-			_collectionListView = libraryListViewFactory();
-			_collectionListView.Dock = DockStyle.Fill;
+			_collectionListView = new ReactControl
+			{
+				JavascriptBundleName = "collectionTabBundle.js",
+				ReactComponentName = "BookListPane",
+				Dock = DockStyle.Fill
+			};
+
 			splitContainer1.Panel1.Controls.Add(_collectionListView);
 
 			_bookView = templateBookViewFactory();
 			_bookView.Dock = DockStyle.Fill;
 			splitContainer1.Panel2.Controls.Add(_bookView);
 
-			splitContainer1.SplitterDistance = _collectionListView.PreferredWidth;
+			//TODO splitContainer1.SplitterDistance = _collectionListView.PreferredWidth;
 			_makeBloomPackButton.Visible = model.IsShellProject;
 			_sendReceiveButton.Visible = Settings.Default.ShowSendReceive;
 
@@ -110,13 +116,15 @@ namespace Bloom.CollectionTab
 			if (SIL.PlatformUtilities.Platform.IsMono)
 				Application.Idle += DeferredBloompackFileChooser;
 			else
-				_collectionListView.MakeBloomPack(false);
+				//_collectionListView.MakeBloomPack(false);
+			{
+			}
 		}
 
 		private void DeferredBloompackFileChooser(object sender, EventArgs e)
 		{
 			Application.Idle -= DeferredBloompackFileChooser;
-			_collectionListView.MakeBloomPack(false);
+			//TODO _collectionListView.MakeBloomPack(false);
 		}
 
 		public string HelpTopicUrl
