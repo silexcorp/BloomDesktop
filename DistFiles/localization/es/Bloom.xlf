@@ -5822,7 +5822,7 @@ Do you want to go ahead?</note>
       <trans-unit id="TeamCollection.TeamCollection">
         <source xml:lang="en">Team Collection</source>
         <note>ID: TeamCollection.TeamCollection</note>
-        <target xml:lang="es-ES" state="needs-translation">Team Collection</target>
+        <target xml:lang="es-ES" state="translated">Colección de colaboración</target>
       </trans-unit>
       <trans-unit id="TeamCollection.Available" sil:dynamic="true" approved="yes">
         <source xml:lang="en">This book is available for editing</source>
