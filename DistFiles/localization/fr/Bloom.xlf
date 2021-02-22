@@ -5819,10 +5819,10 @@ Do you want to go ahead?</note>
         <note>ID: Settings.Enterprise.SubscriptionCode</note>
         <target xml:lang="fr" state="final">Code d'abonnement:</target>
       </trans-unit>
-      <trans-unit id="TeamCollection.TeamCollection">
+      <trans-unit id="TeamCollection.TeamCollection" approved="yes">
         <source xml:lang="en">Team Collection</source>
         <note>ID: TeamCollection.TeamCollection</note>
-        <target xml:lang="fr" state="needs-translation">Team Collection</target>
+        <target xml:lang="fr" state="final">Recueil d'Équipe</target>
       </trans-unit>
       <trans-unit id="TeamCollection.Available" sil:dynamic="true" approved="yes">
         <source xml:lang="en">This book is available for editing</source>
