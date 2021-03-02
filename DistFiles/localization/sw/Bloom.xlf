@@ -5826,7 +5826,7 @@ Kwa<g id="mspp-1" ctype="x-html-strong">ukurasa</g>
       <trans-unit id="TeamCollection.TeamCollection">
         <source xml:lang="en">Team Collection</source>
         <note>ID: TeamCollection.TeamCollection</note>
-        <target xml:lang="sw" state="needs-translation">Team Collection</target>
+        <target xml:lang="sw" state="translated">Mkusanyiko wa Bloom</target>
       </trans-unit>
       <trans-unit id="TeamCollection.Available" sil:dynamic="true">
         <source xml:lang="en">This book is available for editing</source>
