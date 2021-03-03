@@ -32,7 +32,7 @@ namespace Bloom.CollectionTab
 			_collectionListView = new ReactControl
 			{
 				JavascriptBundleName = "collectionTabBundle.js",
-				ReactComponentName = "BookListPane",
+				ReactComponentName = "CollectionsPane",
 				Dock = DockStyle.Fill
 			};
 
