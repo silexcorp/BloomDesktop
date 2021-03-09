@@ -122,7 +122,7 @@
       <trans-unit id="AutoUpdateSoftwareDialog.SoftwareUpdates" sil:dynamic="true">
         <source xml:lang="en">Software Updates</source>
         <note>ID: AutoUpdateSoftwareDialog.SoftwareUpdates</note>
-        <target xml:lang="es-ES" state="needs-translation">Software Updates</target>
+        <target xml:lang="es-ES" state="translated">Actualizaciones de software</target>
       </trans-unit>
       <trans-unit id="AutoUpdateSoftwareDialog.WhatShouldBloomDo" sil:dynamic="true">
         <source xml:lang="en">What should Bloom do when a new version is available?</source>
