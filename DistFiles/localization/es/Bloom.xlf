@@ -127,19 +127,19 @@
       <trans-unit id="AutoUpdateSoftwareDialog.WhatShouldBloomDo" sil:dynamic="true">
         <source xml:lang="en">What should Bloom do when a new version is available?</source>
         <note>ID: AutoUpdateSoftwareDialog.WhatShouldBloomDo</note>
-        <target xml:lang="es-ES" state="needs-translation">What should Bloom do when a new version is available?</target>
+        <target xml:lang="es-ES" state="translated">¿Qué debe hacer Bloom cuando esté disponible una nueva versión?</target>
       </trans-unit>
       <trans-unit id="AutoUpdateSoftwareDialog.AutomaticUpdate" sil:dynamic="true">
         <source xml:lang="en">Automatically download and install it</source>
         <note>ID: AutoUpdateSoftwareDialog.AutomaticUpdate</note>
         <note>Radio button label</note>
-        <target xml:lang="es-ES" state="needs-translation">Automatically download and install it</target>
+        <target xml:lang="es-ES" state="translated">Descárguelo e instálelo automáticamente</target>
       </trans-unit>
       <trans-unit id="AutoUpdateSoftwareDialog.LetMeKnow" sil:dynamic="true">
         <source xml:lang="en">Just let me know about the new version</source>
         <note>ID: AutoUpdateSoftwareDialog.LetMeKnow</note>
         <note>Radio button label</note>
-        <target xml:lang="es-ES" state="needs-translation">Just let me know about the new version</target>
+        <target xml:lang="es-ES" state="translated">Sólo infórmame de la nueva versión</target>
       </trans-unit>
       <trans-unit id="BloomIntegrity.WindowTitle" approved="yes">
         <source xml:lang="en">Bloom Problem</source>
