@@ -119,27 +119,27 @@
         <note>ID: AccessibilityCheck.WindowTitle</note>
         <target xml:lang="fr" state="final">Vérificateur d'Accessibilité Bloom</target>
       </trans-unit>
-      <trans-unit id="AutoUpdateSoftwareDialog.SoftwareUpdates" sil:dynamic="true">
+      <trans-unit id="AutoUpdateSoftwareDialog.SoftwareUpdates" sil:dynamic="true" approved="yes">
         <source xml:lang="en">Software Updates</source>
         <note>ID: AutoUpdateSoftwareDialog.SoftwareUpdates</note>
-        <target xml:lang="fr" state="needs-translation">Software Updates</target>
+        <target xml:lang="fr" state="final">Mises à Jour du Logiciel</target>
       </trans-unit>
-      <trans-unit id="AutoUpdateSoftwareDialog.WhatShouldBloomDo" sil:dynamic="true">
+      <trans-unit id="AutoUpdateSoftwareDialog.WhatShouldBloomDo" sil:dynamic="true" approved="yes">
         <source xml:lang="en">What should Bloom do when a new version is available?</source>
         <note>ID: AutoUpdateSoftwareDialog.WhatShouldBloomDo</note>
-        <target xml:lang="fr" state="needs-translation">What should Bloom do when a new version is available?</target>
+        <target xml:lang="fr" state="final">Que doit faire Bloom lorsqu'une nouvelle version est disponible ?</target>
       </trans-unit>
-      <trans-unit id="AutoUpdateSoftwareDialog.AutomaticUpdate" sil:dynamic="true">
+      <trans-unit id="AutoUpdateSoftwareDialog.AutomaticUpdate" sil:dynamic="true" approved="yes">
         <source xml:lang="en">Automatically download and install it</source>
         <note>ID: AutoUpdateSoftwareDialog.AutomaticUpdate</note>
         <note>Radio button label</note>
-        <target xml:lang="fr" state="needs-translation">Automatically download and install it</target>
+        <target xml:lang="fr" state="final">Télécharger et installer automatiquement</target>
       </trans-unit>
-      <trans-unit id="AutoUpdateSoftwareDialog.LetMeKnow" sil:dynamic="true">
+      <trans-unit id="AutoUpdateSoftwareDialog.LetMeKnow" sil:dynamic="true" approved="yes">
         <source xml:lang="en">Just let me know about the new version</source>
         <note>ID: AutoUpdateSoftwareDialog.LetMeKnow</note>
         <note>Radio button label</note>
-        <target xml:lang="fr" state="needs-translation">Just let me know about the new version</target>
+        <target xml:lang="fr" state="final">M'informer simplement de la nouvelle version</target>
       </trans-unit>
       <trans-unit id="BloomIntegrity.WindowTitle" approved="yes">
         <source xml:lang="en">Bloom Problem</source>
