@@ -119,10 +119,10 @@
         <note>ID: AccessibilityCheck.WindowTitle</note>
         <target xml:lang="es-ES" state="final">Verificador de accesibilidad de Bloom</target>
       </trans-unit>
-      <trans-unit id="AutoUpdateSoftwareDialog.SoftwareUpdates" sil:dynamic="true">
+      <trans-unit id="AutoUpdateSoftwareDialog.SoftwareUpdates" sil:dynamic="true" approved="yes">
         <source xml:lang="en">Software Updates</source>
         <note>ID: AutoUpdateSoftwareDialog.SoftwareUpdates</note>
-        <target xml:lang="es-ES" state="translated">Actualizaciones de software</target>
+        <target xml:lang="es-ES" state="final">Actualizaciones de software</target>
       </trans-unit>
       <trans-unit id="AutoUpdateSoftwareDialog.WhatShouldBloomDo" sil:dynamic="true">
         <source xml:lang="en">What should Bloom do when a new version is available?</source>
