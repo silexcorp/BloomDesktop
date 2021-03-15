@@ -127,19 +127,19 @@
       <trans-unit id="AutoUpdateSoftwareDialog.WhatShouldBloomDo" sil:dynamic="true">
         <source xml:lang="en">What should Bloom do when a new version is available?</source>
         <note>ID: AutoUpdateSoftwareDialog.WhatShouldBloomDo</note>
-        <target xml:lang="sw" state="needs-translation">What should Bloom do when a new version is available?</target>
+        <target xml:lang="sw" state="translated">Bloom inapaswa kufanya nini wakati toleo jipya linapatikana?</target>
       </trans-unit>
       <trans-unit id="AutoUpdateSoftwareDialog.AutomaticUpdate" sil:dynamic="true">
         <source xml:lang="en">Automatically download and install it</source>
         <note>ID: AutoUpdateSoftwareDialog.AutomaticUpdate</note>
         <note>Radio button label</note>
-        <target xml:lang="sw" state="needs-translation">Automatically download and install it</target>
+        <target xml:lang="sw" state="translated">Pakua kiatomati na usakinishe</target>
       </trans-unit>
       <trans-unit id="AutoUpdateSoftwareDialog.LetMeKnow" sil:dynamic="true">
         <source xml:lang="en">Just let me know about the new version</source>
         <note>ID: AutoUpdateSoftwareDialog.LetMeKnow</note>
         <note>Radio button label</note>
-        <target xml:lang="sw" state="needs-translation">Just let me know about the new version</target>
+        <target xml:lang="sw" state="translated">Nijulishe tu juu ya toleo jipya</target>
       </trans-unit>
       <trans-unit id="BloomIntegrity.WindowTitle" approved="yes">
         <source xml:lang="en">Bloom Problem</source>
