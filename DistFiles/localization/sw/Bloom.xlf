@@ -3239,7 +3239,7 @@
         <source xml:lang="en">Report</source>
         <note>ID: ErrorReport.Report</note>
         <note>"Report" as in "Report this problem to Bloom Support"</note>
-        <target xml:lang="sw" state="needs-translation">Report</target>
+        <target xml:lang="sw" state="translated">Ripoti</target>
       </trans-unit>
       <trans-unit id="Errors.BookProblem" approved="yes">
         <source xml:lang="en">Bloom had a problem showing this book. This doesn't mean your work is lost, but it does mean that something is out of date, is missing, or has gone wrong.</source>
