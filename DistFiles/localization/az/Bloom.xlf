@@ -133,13 +133,13 @@
         <source xml:lang="en">Automatically download and install it</source>
         <note>ID: AutoUpdateSoftwareDialog.AutomaticUpdate</note>
         <note>Radio button label</note>
-        <target xml:lang="az" state="needs-translation">Automatically download and install it</target>
+        <target xml:lang="az" state="translated">Avtomatik olaraq yüklə və quraşdır</target>
       </trans-unit>
       <trans-unit id="AutoUpdateSoftwareDialog.LetMeKnow" sil:dynamic="true">
         <source xml:lang="en">Just let me know about the new version</source>
         <note>ID: AutoUpdateSoftwareDialog.LetMeKnow</note>
         <note>Radio button label</note>
-        <target xml:lang="az" state="needs-translation">Just let me know about the new version</target>
+        <target xml:lang="az" state="translated">Ancaq mənə yeni versiyası haqqında xəber ver</target>
       </trans-unit>
       <trans-unit id="BloomIntegrity.WindowTitle">
         <source xml:lang="en">Bloom Problem</source>
@@ -1098,7 +1098,7 @@
       <trans-unit id="Common.Copy">
         <source xml:lang="en">Copy</source>
         <note>ID: Common.Copy</note>
-        <target xml:lang="az" state="needs-translation">Copy</target>
+        <target xml:lang="az" state="translated">Köçür</target>
       </trans-unit>
       <trans-unit id="Common.Delete">
         <source xml:lang="en">Delete</source>
@@ -1864,7 +1864,7 @@
         <source xml:lang="en">Adapted from original, {0}, {1}. Licensed under {2}.</source>
         <note>ID: EditTab.FrontMatter.FullOriginalCopyrightLicenseSentence</note>
         <note>On the Credits page of a book being translated, Bloom shows the original copyright. {0} is original title, {1} is original copyright, and {2} is license information.</note>
-        <target xml:lang="az" state="needs-translation">Adapted from original, {0}, {1}. Licensed under {2}.</target>
+        <target xml:lang="az" state="translated">Orijinaldan uyğunlaşdırılıb, {0}, {1}. {2} altında lisenziyalıdır.</target>
       </trans-unit>
       <trans-unit id="EditTab.FrontMatter.FundingAgenciesPrompt" sil:dynamic="true" approved="yes">
         <source xml:lang="en">Use this to acknowledge any funding agencies.</source>
